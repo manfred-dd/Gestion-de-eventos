@@ -4,7 +4,7 @@ plataforma para la gestion de eventos
 ---PROYECTO EN DESARROLLO---
 
 -Tecnologias Utilizadas
-html,
-css,
-php,
+htmL
+css
+php
 mysql(con xampp)
