@@ -8,3 +8,8 @@ htmL
 css
 php
 mysql(con xampp)
+
+-----------------
+crear una base de datos llamada plataforma en mysql, 
+configurar el archivo config.php del proyecto,
+importar el archivo plataforma.sql 
