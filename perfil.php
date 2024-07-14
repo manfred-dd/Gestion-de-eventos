@@ -4,23 +4,23 @@ include 'config.php';
 include 'templates/header.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+  header("Location: login.php");
+  exit();
 }
 
 $user_id = $_SESSION['user_id'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nombre = $_POST['nombre'];
-    $foto_perfil = $_POST['foto_perfil'];
+  $nombre = $_POST['nombre'];
+  $foto_perfil = $_POST['foto_perfil'];
 
-    $sql = "UPDATE usuarios SET nombre='$nombre', foto_perfil='$foto_perfil' WHERE id='$user_id'";
+  $sql = "UPDATE usuarios SET nombre='$nombre', foto_perfil='$foto_perfil' WHERE id='$user_id'";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Perfil actualizado exitosamente";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+  if ($conn->query($sql) === TRUE) {
+    echo "Perfil actualizado exitosamente";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 }
 
 $sql = "SELECT * FROM usuarios WHERE id='$user_id'";
@@ -31,19 +31,32 @@ $user = $result->fetch_assoc();
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css"> </head>
 <body>
-    <div class="container">
-        <h2>Editar Perfil</h2>
-        <form method="POST" action="">
-            <input type="text" name="nombre" value="<?php echo $user['nombre']; ?>" required>
-            <input type="text" name="foto_perfil" value="<?php echo $user['foto_perfil']; ?>" placeholder="URL de la foto de perfil">
-            <button type="submit">Actualizar</button>
-        </form>
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col justify-center items-center">
+      <h2 class="text-2xl font-bold mb-4">Editar Perfil</h2>
+      <?php if (!empty($user['foto_perfil'])): ?>
+        <img src="<?php echo $user['foto_perfil']; ?>" alt="Foto de perfil" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
+      <?php endif; ?>
+      <form method="POST" action="" class="w-full max-w-md">
+        <div class="mb-4">
+          <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+          <input type="text" id="nombre" name="nombre" value="<?php echo $user['nombre']; ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-4">
+          <label for="foto_perfil" class="block text-gray-700 text-sm font-bold mb-2">URL de la foto de perfil</label>
+          <input type="text" id="foto_perfil" name="foto_perfil" value="<?php echo $user['foto_perfil']; ?>" placeholder="URL de la foto de perfil" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500">
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">Actualizar</button>
+      </form>
     </div>
+  </div>
 </body>
 </html>
+
+

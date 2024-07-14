@@ -1,0 +1,17 @@
+[33mcommit 61022521da2226b2d7179a56bdab515bdfa70006[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Manfred-DD <justinianoanezmanfred23@gmail.com>
+Date:   Sun Jul 14 17:12:18 2024 -0400
+
+    implementacion de las funcionalidades evento, crear evento, perfil, registrar evento y cambiando a utilizar tailwind para los estilos
+
+[33mcommit fd99f9dd164926b331a7f188066bd0ef9b743cf9[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Manfred-DD <justinianoanezmanfred23@gmail.com>
+Date:   Sun Jul 14 15:01:03 2024 -0400
+
+    añadiendo los datos que son necesario para registrarse, y estructurando directorio con archivos necesarios
+
+[33mcommit 2a51ca09f4208c14b1118f2222e64d1e5c8af2e6[m
+Author: TecnoPrime <jordiguarena@gmail.com>
+Date:   Sun Jul 14 12:57:42 2024 -0400
+
+    creacion de inicio de sesion y registro de usuario
