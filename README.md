@@ -5,7 +5,7 @@ plataforma para la gestion de eventos
 
 -Tecnologias Utilizadas
 htmL
-css
+tailwind
 php
 mysql(con xampp)
 
