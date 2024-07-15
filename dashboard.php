@@ -14,9 +14,9 @@ $user_role = $_SESSION['rol']; // Asumiendo que el rol del usuario está almacen
 
 // Consulta para obtener los eventos en los que el usuario está registrado (como asistente)
 $sqlAsistente = "SELECT eventos.titulo, eventos.descripcion, eventos.fecha, eventos.hora, eventos.lugar 
-        FROM eventos 
-        INNER JOIN registros ON eventos.id = registros.evento_id 
-        WHERE registros.usuario_id = ?";
+                 FROM eventos 
+                 INNER JOIN registros ON eventos.id = registros.evento_id 
+                 WHERE registros.usuario_id = ?";
 $stmtAsistente = $conn->prepare($sqlAsistente);
 $stmtAsistente->bind_param("i", $user_id);
 $stmtAsistente->execute();
@@ -37,18 +37,13 @@ $resultOrganizador = $stmtOrganizador->get_result();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center">
-      <h2 class="text-2xl font-bold text-gray-800">Bienvenido a tu panel de control</h2>
-      <a href="logout.php">
-        <button class="px-4 py-2 bg-red-500 text-white font-bold rounded hover:bg-red-700">Cerrar Sesión</button>
-      </a>
+      <h2 class="text-2xl font-bold text-gray-800">Bienvenido</h2>
     </div>
-    <p class="text-gray-600 mt-4">Usuario ID: <?php echo htmlspecialchars($user_id); ?></p>
-
+    
     <?php if ($user_role == 'asistente' || $user_role == 'ambos'): ?>
     <div class="mt-6">
       <h3 class="text-xl font-semibold text-gray-800 mb-4">Eventos Registrados</h3>

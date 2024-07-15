@@ -1,6 +1,5 @@
 <?php
 include 'config.php';
-include 'templates/header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
@@ -11,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO usuarios (nombre, email, password, rol) VALUES ('$nombre', '$email', '$password', '$rol')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Registro exitoso";
+        header("Location: login.php"); // Redirigir al inicio de sesión
+        exit(); // Asegurarse de que el script se detenga después de la redirección
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -27,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro</title>
   <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container mx-auto px-4 py-8 flex justify-center items-center min-h-screen bg-gray-100">

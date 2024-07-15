@@ -2,28 +2,47 @@
 session_start();
 include 'config.php';
 include 'templates/header.php';
+// Importar la función enviarCorreo
+require 'Composer/vendor/autoload.php';
+require 'Composer/index.php';
+
 if (!isset($_SESSION['user_id']) || $_SESSION['rol'] != 'organizador') {
     header("Location: login.php");
     exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $titulo = $_POST['titulo'];
-    $descripcion = $_POST['descripcion'];
-    $fecha = $_POST['fecha'];
-    $hora = $_POST['hora'];
-    $lugar = $_POST['lugar'];
-    $capacidad = $_POST['capacidad'];
-    $organizador_id = $_SESSION['user_id'];
+  $titulo = $_POST['titulo'];
+  $descripcion = $_POST['descripcion'];
+  $fecha = $_POST['fecha'];
+  $hora = $_POST['hora'];
+  $lugar = $_POST['lugar'];
+  $capacidad = $_POST['capacidad'];
+  $organizador_id = $_SESSION['user_id'];
 
-    $sql = "INSERT INTO eventos (titulo, descripcion, fecha, hora, lugar, capacidad, organizador_id) 
-            VALUES ('$titulo', '$descripcion', '$fecha', '$hora', '$lugar', '$capacidad', '$organizador_id')";
+  $asuntoEmail = 'El evento ' . $titulo . ' ha sido creado exitosamente';
+  $bodyEmail = 'Estimado organizador, el evento ' . $titulo . ' ha sido creado exitosamente, para más información ingrese a la plataforma.';
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Evento creado exitosamente";
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+  $sql = "INSERT INTO eventos (titulo, descripcion, fecha, hora, lugar, capacidad, organizador_id) 
+      VALUES ('$titulo', '$descripcion', '$fecha', '$hora', '$lugar', '$capacidad', '$organizador_id')";
+
+  $result = $conn->query("SELECT email FROM usuarios WHERE id = '$organizador_id'");
+  $row = $result->fetch_assoc();
+  $correoOrganizador = $row['email'];
+
+  if ($conn->query($sql) === TRUE) {
+
+
+    // Enviar correo
+    $resultadoCorreo = enviarCorreo($asuntoEmail, $bodyEmail, $correoOrganizador);
+
+    // Mostrar resultado del correo a través de un alert
+    echo "<script>alert('$resultadoCorreo');</script>";
+
+    echo "Evento creado exitosamente";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 }
 
 ?>
@@ -35,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crear Evento</title>
   <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="container mx-auto px-4 py-8">

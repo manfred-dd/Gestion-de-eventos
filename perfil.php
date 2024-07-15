@@ -33,18 +33,15 @@ $user = $result->fetch_assoc();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil</title>
+  <title>Editar Perfil</title>
   <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css"> </head>
-<body>
-  <div class="container mx-auto px-4 py-8">
+</head>
+<body class="bg-gray-100"> <div class="container mx-auto px-4 py-8">
     <div class="flex flex-col justify-center items-center">
-      <h2 class="text-2xl font-bold mb-4">Editar Perfil</h2>
-      <?php if (!empty($user['foto_perfil'])): ?>
+      <h2 class="text-2xl font-bold mb-4 text-center">Editar Perfil</h2> <?php if (!empty($user['foto_perfil'])): ?>
         <img src="<?php echo $user['foto_perfil']; ?>" alt="Foto de perfil" class="rounded-full w-32 h-32 object-cover mx-auto mb-4">
       <?php endif; ?>
-      <form method="POST" action="" class="w-full max-w-md">
-        <div class="mb-4">
+      <form method="POST" action="" class="w-full max-w-md bg-white shadow rounded-lg px-8 py-5 mb-4"> <div class="mb-4">
           <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
           <input type="text" id="nombre" name="nombre" value="<?php echo $user['nombre']; ?>" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 focus:outline-blue-500 focus:ring-2 focus:ring-blue-500">
         </div>
@@ -58,5 +55,6 @@ $user = $result->fetch_assoc();
   </div>
 </body>
 </html>
+
 
 
