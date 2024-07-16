@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($conn->query($sql) === TRUE) {
         $resultadoCorreo = enviarCorreo($asuntoEmail, $bodyEmail, $correoAsistente);
         echo "<script>alert('$resultadoCorreo');</script>";
-        echo "Registro exitoso";
+        //echo "Registro exitoso";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Mostrar resultado del correo a través de un alert
     echo "<script>alert('$resultadoCorreo');</script>";
 
-    echo "Evento creado exitosamente";
+    //echo "Evento creado exitosamente";
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
