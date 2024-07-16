@@ -22,7 +22,7 @@ function enviarCorreo($asunto, $cuerpo, $destinatario) {
         $mail->Port = 587;
 
         // Configuración del correo
-        $mail->setFrom('horaciomunoz686@gmail.com', 'Horaio Events');
+        $mail->setFrom('horaciomunoz686@gmail.com', 'CAMINO REAL');
         $mail->addAddress($destinatario);
         $mail->Subject = $asunto;
         $mail->Body = $cuerpo;
@@ -31,7 +31,7 @@ function enviarCorreo($asunto, $cuerpo, $destinatario) {
         return 'Correo enviado correctamente';
     } catch (Exception $e) {
         return 'Error al enviar el correo: ' . $mail->ErrorInfo;
-        #echo "Error al enviar el correo: " . $mail->ErrorInfo;
+        echo "Error al enviar el correo: " . $mail->ErrorInfo;
     }
 }
 
