@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $organizador_id = $_SESSION['user_id'];
 
   $asuntoEmail = 'El evento ' . $titulo . ' ha sido creado exitosamente';
-  $bodyEmail = 'Estimado organizador, el evento ' . $titulo . ' ha sido creado exitosamente, para más información ingrese a la plataforma.';
+  $bodyEmail = 'Estimado organizador, el evento ' . $titulo . ' ha sido creado exitosamente, para más información ingrese a la plataforma, https://calzadosabilu.lat/';
 
   $sql = "INSERT INTO eventos (titulo, descripcion, fecha, hora, lugar, capacidad, organizador_id) 
       VALUES ('$titulo', '$descripcion', '$fecha', '$hora', '$lugar', '$capacidad', '$organizador_id')";

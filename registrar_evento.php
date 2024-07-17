@@ -17,16 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $row = $result->fetch_assoc();
     $correoAsistente = $row['email'];
     $asuntoEmail = 'Registro a evento exitoso';
-    $bodyEmail = 'Estimado asistente, su registro al evento ha sido exitoso, para más información ingrese a la plataforma.';
+    $bodyEmail = 'Estimado asistente, su registro al evento ha sido exitoso, para más información ingrese a la plataforma, https://calzadosabilu.lat/';
 
     if ($conn->query($sql) === TRUE) {
         $resultadoCorreo = enviarCorreo($asuntoEmail, $bodyEmail, $correoAsistente);
-        echo "<script>alert('$resultadoCorreo');</script>";
-        //echo "Registro exitoso";
+        echo "<script>
+          alert('$resultadoCorreo');
+          window.location.href = 'eventos.php'; // Redirige a la página de eventos
+        </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    
 }
 
 if (isset($_GET['id'])) {
@@ -90,7 +91,7 @@ if (isset($_GET['id'])) {
     }
 
     button {
-      background-color: #4CAF50;
+      background-color: blue;
       color: #fff;
       border: none;
       padding: 10px 20px;
@@ -101,7 +102,7 @@ if (isset($_GET['id'])) {
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: mediumblue;
     }
   </style>
 </head>
@@ -116,3 +117,4 @@ if (isset($_GET['id'])) {
   </div>
 </body>
 </html>
+

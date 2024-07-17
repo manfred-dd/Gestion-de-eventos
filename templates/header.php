@@ -11,7 +11,7 @@
   <header class="bg-gray-800 text-white">
     <nav class="container mx-auto px-4 py-2 flex justify-between items-center">
       <ul class="flex space-x-4">
-        <li><a href="dashboard.php" class="hover:text-gray-400">Inicio</a></li>
+        <li><a href="inicio.php" class="hover:text-gray-400">Inicio</a></li>
         <li><a href="eventos.php" class="hover:text-gray-400">Eventos</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="perfil.php" class="hover:text-gray-400">Perfil</a></li>

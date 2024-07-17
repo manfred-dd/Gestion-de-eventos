@@ -17,10 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $sql = "UPDATE usuarios SET nombre='$nombre', foto_perfil='$foto_perfil' WHERE id='$user_id'";
 
   if ($conn->query($sql) === TRUE) {
-    echo "Perfil actualizado exitosamente";
+    echo "<p class='text-green-500 font-bold'>Perfil actualizado exitosamente</p>";
   } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+    echo "<p class='text-red-500 font-bold'>Error: " . $sql . "<br>" . $conn->error . "</p>";
+  } 
 }
 
 $sql = "SELECT * FROM usuarios WHERE id='$user_id'";
@@ -55,6 +55,7 @@ $user = $result->fetch_assoc();
   </div>
 </body>
 </html>
+
 
 
 
